@@ -144,7 +144,7 @@ const objOps = {
 var arrOps = {
   add: function (arr, i, document) {
     if(isInteger(i)) {
-      arr.splice(i, 0, this.value); 
+      arr.splice(i, 0, this.value);
     } else { // array props
       arr[i] = this.value;
     }
@@ -158,6 +158,10 @@ var arrOps = {
   replace: function (arr, i, document) {
     var removed = arr[i];
     arr[i] = this.value;
+    return { newDocument: document, removed };
+  },
+  splice: function (arr, i, document) {
+    var removed = arr.splice.apply(arr, [i, this.remove].concat(this.add));
     return { newDocument: document, removed };
   },
   move: objOps.move,
