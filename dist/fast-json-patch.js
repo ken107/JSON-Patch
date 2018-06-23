@@ -314,6 +314,10 @@ var arrOps = {
         arr[i] = this.value;
         return { newDocument: document, removed: removed };
     },
+    splice: function (arr, i, document) {
+        var removed = arr.splice.apply(arr, [i, this.remove].concat(this.add));
+        return { newDocument: document, removed: removed };
+    },
     move: objOps.move,
     copy: objOps.copy,
     test: objOps.test,
